@@ -1,5 +1,10 @@
 # OS
 .DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
 Thumbs.db
 
 # Editor
@@ -12,11 +17,13 @@ Thumbs.db
 # Logs
 *.log
 npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 # Dependencies
 node_modules/
 
-# Build
+# Build outputs
 dist/
 build/
 *.min.js
