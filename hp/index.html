@@ -3,250 +3,546 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ELITE FITNESS - パーソナルトレーニングジム</title>
+    <meta name="description" content="ELITE FITNESS - プロフェッショナルなパーソナルトレーニングジム。資格保有トレーナーによる完全個別指導で、あなたの理想の体を実現します。">
+    <title>ELITE FITNESS - パーソナルトレーニングジム | プロフェッショナルな指導</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;500;700;900&display=swap');
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --gold-color: #d4af37;
+            --text-light: #e94560;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            font-family: 'Noto Sans JP', sans-serif;
+            font-family: 'Noto Sans JP', 'Inter', sans-serif;
+            overflow-x: hidden;
         }
-        .gradient-bg {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+        
         .hero-bg {
-            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.95) 0%, rgba(22, 33, 62, 0.95) 50%, rgba(15, 52, 96, 0.95) 100%),
+                        url('https://images.unsplash.com/photo-1534438327276-14e5300c3a48?ixlib=rb-4.0.3&auto=format&fit=crop&w=2070&q=80');
             background-size: cover;
             background-position: center;
+            background-attachment: fixed;
         }
-        .smooth-scroll {
-            scroll-behavior: smooth;
+        
+        .gradient-overlay {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
         }
+        
+        .gold-accent {
+            color: var(--gold-color);
+        }
+        
+        .nav-scrolled {
+            background: rgba(26, 26, 46, 0.98);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+        
         .card-hover {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
+        
         .card-hover:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+            transform: translateY(-10px);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+        }
+        
+        .fade-in {
+            animation: fadeIn 1s ease-in;
+        }
+        
+        .slide-up {
+            animation: slideUp 0.8s ease-out;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .section-divider {
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(212, 175, 55, 0.3), transparent);
+        }
+        
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #1a1a2e;
+            font-weight: 700;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid #d4af37;
+            color: #d4af37;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-secondary:hover {
+            background: #d4af37;
+            color: #1a1a2e;
+        }
+        
+        .testimonial-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.8), rgba(22, 33, 62, 0.8));
+            border: 1px solid rgba(212, 175, 55, 0.2);
+        }
+        
+        .pricing-card-featured {
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            border: 2px solid #d4af37;
+            position: relative;
+        }
+        
+        .pricing-card-featured::before {
+            content: '人気';
+            position: absolute;
+            top: -15px;
+            right: 30px;
+            background: linear-gradient(135deg, #d4af37, #f4d03f);
+            color: #1a1a2e;
+            padding: 5px 20px;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: 0.875rem;
+        }
+        
+        .trainer-card {
+            background: linear-gradient(135deg, rgba(26, 26, 46, 0.9), rgba(22, 33, 62, 0.9));
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .icon-wrapper {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1), rgba(244, 208, 63, 0.1));
+            border: 2px solid rgba(212, 175, 55, 0.3);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateX(-50%) translateY(0);
+            }
+            40% {
+                transform: translateX(-50%) translateY(-10px);
+            }
+            60% {
+                transform: translateX(-50%) translateY(-5px);
+            }
+        }
+        
+        .form-input {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            color: white;
+        }
+        
+        .form-input:focus {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: #d4af37;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(212, 175, 55, 0.1);
+        }
+        
+        .form-input::placeholder {
+            color: rgba(255, 255, 255, 0.5);
+        }
+        
+        @media (max-width: 768px) {
+            .hero-bg {
+                background-attachment: scroll;
+            }
         }
     </style>
 </head>
-<body class="smooth-scroll">
+<body class="bg-gray-900 text-white">
     <!-- Navigation -->
-    <nav class="fixed w-full z-50 bg-white shadow-lg">
+    <nav id="navbar" class="fixed w-full z-50 transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-20">
+            <div class="flex justify-between items-center h-24">
                 <div class="flex-shrink-0">
-                    <h1 class="text-2xl font-bold text-gray-900">ELITE FITNESS</h1>
+                    <h1 class="text-3xl font-bold">
+                        <span class="gold-accent">ELITE</span> FITNESS
+                    </h1>
                 </div>
                 <div class="hidden md:block">
                     <div class="ml-10 flex items-baseline space-x-8">
-                        <a href="#home" class="text-gray-900 hover:text-purple-600 px-3 py-2 text-sm font-medium transition">ホーム</a>
-                        <a href="#services" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition">サービス</a>
-                        <a href="#trainers" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition">トレーナー</a>
-                        <a href="#pricing" class="text-gray-700 hover:text-purple-600 px-3 py-2 text-sm font-medium transition">料金</a>
-                        <a href="#contact" class="bg-purple-600 text-white px-6 py-2 rounded-lg hover:bg-purple-700 transition text-sm font-medium">お問い合わせ</a>
+                        <a href="#home" class="text-white hover:text-yellow-400 px-3 py-2 text-sm font-medium transition duration-300">ホーム</a>
+                        <a href="#services" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition duration-300">サービス</a>
+                        <a href="#trainers" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition duration-300">トレーナー</a>
+                        <a href="#pricing" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition duration-300">料金</a>
+                        <a href="#testimonials" class="text-gray-300 hover:text-yellow-400 px-3 py-2 text-sm font-medium transition duration-300">お客様の声</a>
+                        <a href="#contact" class="btn-primary px-6 py-2 rounded-lg text-sm">無料相談</a>
                     </div>
                 </div>
                 <div class="md:hidden">
-                    <button id="mobile-menu-button" class="text-gray-700 hover:text-purple-600">
+                    <button id="mobile-menu-button" class="text-white hover:text-yellow-400">
                         <i class="fas fa-bars text-2xl"></i>
                     </button>
                 </div>
             </div>
         </div>
-        <div id="mobile-menu" class="hidden md:hidden bg-white border-t">
+        <div id="mobile-menu" class="hidden md:hidden gradient-overlay border-t border-yellow-400/20">
             <div class="px-2 pt-2 pb-3 space-y-1">
-                <a href="#home" class="block px-3 py-2 text-gray-900 hover:bg-purple-50 rounded-md">ホーム</a>
-                <a href="#services" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md">サービス</a>
-                <a href="#trainers" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md">トレーナー</a>
-                <a href="#pricing" class="block px-3 py-2 text-gray-700 hover:bg-purple-50 rounded-md">料金</a>
-                <a href="#contact" class="block px-3 py-2 bg-purple-600 text-white rounded-md">お問い合わせ</a>
+                <a href="#home" class="block px-3 py-2 text-white hover:bg-yellow-400/10 rounded-md">ホーム</a>
+                <a href="#services" class="block px-3 py-2 text-gray-300 hover:bg-yellow-400/10 rounded-md">サービス</a>
+                <a href="#trainers" class="block px-3 py-2 text-gray-300 hover:bg-yellow-400/10 rounded-md">トレーナー</a>
+                <a href="#pricing" class="block px-3 py-2 text-gray-300 hover:bg-yellow-400/10 rounded-md">料金</a>
+                <a href="#testimonials" class="block px-3 py-2 text-gray-300 hover:bg-yellow-400/10 rounded-md">お客様の声</a>
+                <a href="#contact" class="block px-3 py-2 btn-primary rounded-md text-center">無料相談</a>
             </div>
         </div>
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-5xl md:text-7xl font-bold mb-6 animate-fade-in">
-                あなたの理想の体を<br class="hidden md:block">実現します
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white pt-24 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center fade-in">
+            <div class="mb-6">
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    プロフェッショナルトレーニングジム
+                </span>
+            </div>
+            <h2 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight">
+                理想の体を<br class="hidden md:block">
+                <span class="gold-accent">実現</span>する
             </h2>
-            <p class="text-xl md:text-2xl mb-8 text-gray-200">
-                プロフェッショナルなトレーナーが、あなた専用のプログラムを提供
+            <p class="text-xl md:text-2xl mb-4 text-gray-300 max-w-3xl mx-auto">
+                資格保有のプロフェッショナルトレーナーが、<br class="hidden md:block">
+                あなた専用のオーダーメイドプログラムを提供
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                <a href="#contact" class="bg-purple-600 hover:bg-purple-700 text-white px-8 py-4 rounded-lg text-lg font-semibold transition shadow-lg">
-                    無料カウンセリング予約
+            <p class="text-lg text-gray-400 mb-12 max-w-2xl mx-auto">
+                科学的根拠に基づいたトレーニングと栄養指導で、確実に結果を出します
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+                <a href="#contact" class="btn-primary px-10 py-4 rounded-lg text-lg font-semibold inline-block">
+                    <i class="fas fa-calendar-check mr-2"></i>無料カウンセリング予約
                 </a>
-                <a href="#services" class="bg-white text-purple-600 hover:bg-gray-100 px-8 py-4 rounded-lg text-lg font-semibold transition shadow-lg">
-                    サービスを見る
+                <a href="#services" class="btn-secondary px-10 py-4 rounded-lg text-lg font-semibold inline-block">
+                    <i class="fas fa-info-circle mr-2"></i>サービス詳細を見る
                 </a>
             </div>
+            <div class="grid grid-cols-3 gap-8 max-w-4xl mx-auto mt-20">
+                <div class="text-center">
+                    <div class="stat-number">10,000+</div>
+                    <p class="text-gray-400 mt-2">延べ会員数</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-number">98%</div>
+                    <p class="text-gray-400 mt-2">目標達成率</p>
+                </div>
+                <div class="text-center">
+                    <div class="stat-number">15年</div>
+                    <p class="text-gray-400 mt-2">実績年数</p>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down text-yellow-400 text-2xl"></i>
         </div>
     </section>
 
     <!-- Services Section -->
-    <section id="services" class="py-20 bg-gray-50">
+    <section id="services" class="py-24 gradient-overlay">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">サービス内容</h2>
-                <p class="text-xl text-gray-600">あなたの目標に合わせた最適なプログラム</p>
+            <div class="text-center mb-20 slide-up">
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    サービス内容
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">あなたの目標に合わせた<br class="hidden md:block">最適なプログラム</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">科学的根拠に基づいたトレーニングメソッドで、確実に結果を実現します</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-dumbbell text-purple-600 text-2xl"></i>
+                <div class="trainer-card rounded-2xl shadow-2xl p-10 card-hover">
+                    <div class="icon-wrapper rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-dumbbell text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">パーソナルトレーニング</h3>
-                    <p class="text-gray-600 mb-4">
-                        1対1の完全個別指導で、あなた専用のトレーニングプログラムを提供。正しいフォームと効率的な方法を学べます。
+                    <h3 class="text-2xl font-bold text-white mb-4">パーソナルトレーニング</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        1対1の完全個別指導で、あなた専用のトレーニングプログラムを提供。正しいフォームと効率的な方法を徹底指導します。
                     </p>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>完全個別指導</li>
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>オーダーメイドプログラム</li>
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>栄養指導付き</li>
+                    <ul class="text-gray-300 space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>完全個別指導（1対1）</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>オーダーメイドプログラム</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>栄養指導・食事管理サポート</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>体組成測定・進捗管理</span>
+                        </li>
                     </ul>
+                    <a href="#contact" class="btn-secondary w-full text-center py-3 rounded-lg">
+                        詳しく見る <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-heartbeat text-purple-600 text-2xl"></i>
+                <div class="trainer-card rounded-2xl shadow-2xl p-10 card-hover">
+                    <div class="icon-wrapper rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-heartbeat text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">ボディメイク</h3>
-                    <p class="text-gray-600 mb-4">
-                        理想の体型を実現するための包括的なボディメイクプログラム。筋力アップ、ダイエット、姿勢改善まで対応。
+                    <h3 class="text-2xl font-bold text-white mb-4">ボディメイク</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
+                        理想の体型を実現するための包括的なボディメイクプログラム。筋力アップ、ダイエット、姿勢改善まで完全サポート。
                     </p>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>体型分析</li>
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>食事管理サポート</li>
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>進捗管理</li>
+                    <ul class="text-gray-300 space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>詳細な体型分析</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>食事管理・栄養指導</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>週次進捗レポート</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>24時間LINEサポート</span>
+                        </li>
                     </ul>
+                    <a href="#contact" class="btn-secondary w-full text-center py-3 rounded-lg">
+                        詳しく見る <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-8 card-hover">
-                    <div class="w-16 h-16 bg-purple-100 rounded-full flex items-center justify-center mb-6">
-                        <i class="fas fa-user-md text-purple-600 text-2xl"></i>
+                <div class="trainer-card rounded-2xl shadow-2xl p-10 card-hover">
+                    <div class="icon-wrapper rounded-full flex items-center justify-center mb-6 mx-auto">
+                        <i class="fas fa-user-md text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">リハビリ・ケア</h3>
-                    <p class="text-gray-600 mb-4">
+                    <h3 class="text-2xl font-bold text-white mb-4">リハビリ・ケア</h3>
+                    <p class="text-gray-300 mb-6 leading-relaxed">
                         怪我からの復帰や、慢性的な痛みの改善をサポート。医療知識を持つトレーナーが安全に指導します。
                     </p>
-                    <ul class="text-gray-600 space-y-2">
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>機能改善トレーニング</li>
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>痛みの緩和</li>
-                        <li><i class="fas fa-check text-purple-600 mr-2"></i>予防プログラム</li>
+                    <ul class="text-gray-300 space-y-3 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>機能改善トレーニング</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>痛みの緩和・予防</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>医療機関との連携</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span>再発予防プログラム</span>
+                        </li>
                     </ul>
+                    <a href="#contact" class="btn-secondary w-full text-center py-3 rounded-lg">
+                        詳しく見る <i class="fas fa-arrow-right ml-2"></i>
+                    </a>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-white">
+    <section class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">選ばれる理由</h2>
-                <p class="text-xl text-gray-600">ELITE FITNESSが選ばれる5つの理由</p>
+            <div class="text-center mb-20">
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    選ばれる理由
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">ELITE FITNESSが選ばれる<br class="hidden md:block">6つの理由</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">プロフェッショナルな指導と最新の設備で、あなたの目標達成をサポートします</p>
             </div>
             <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-certificate text-white text-3xl"></i>
+                <div class="text-center p-8 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-400/30">
+                        <i class="fas fa-certificate text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">資格保有トレーナー</h3>
-                    <p class="text-gray-600">全トレーナーが国家資格または国際資格を保有。プロフェッショナルな指導を提供します。</p>
+                    <h3 class="text-xl font-bold text-white mb-3">資格保有トレーナー</h3>
+                    <p class="text-gray-300">全トレーナーが国家資格または国際資格を保有。NSCA、JATI、柔道整復師など、プロフェッショナルな指導を提供します。</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-chart-line text-white text-3xl"></i>
+                <div class="text-center p-8 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-400/30">
+                        <i class="fas fa-microscope text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">科学的アプローチ</h3>
-                    <p class="text-gray-600">最新の運動科学に基づいたトレーニングプログラムで、効率的に目標を達成できます。</p>
+                    <h3 class="text-xl font-bold text-white mb-3">科学的アプローチ</h3>
+                    <p class="text-gray-300">最新の運動科学と栄養学に基づいたトレーニングプログラムで、効率的かつ安全に目標を達成できます。</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-clock text-white text-3xl"></i>
+                <div class="text-center p-8 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-400/30">
+                        <i class="fas fa-clock text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">柔軟なスケジュール</h3>
-                    <p class="text-gray-600">早朝から深夜まで対応。あなたのライフスタイルに合わせた予約が可能です。</p>
+                    <h3 class="text-xl font-bold text-white mb-3">柔軟なスケジュール</h3>
+                    <p class="text-gray-300">早朝6時から深夜23時まで対応。あなたのライフスタイルに合わせた予約が可能です。オンライン相談も対応。</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-shield-alt text-white text-3xl"></i>
+                <div class="text-center p-8 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-400/30">
+                        <i class="fas fa-shield-alt text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">安全第一</h3>
-                    <p class="text-gray-600">最新の設備と安全管理体制で、安心してトレーニングに集中できます。</p>
+                    <h3 class="text-xl font-bold text-white mb-3">安全第一</h3>
+                    <p class="text-gray-300">最新の設備と安全管理体制で、安心してトレーニングに集中できます。全トレーナーが救急処置資格を保有。</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-users text-white text-3xl"></i>
+                <div class="text-center p-8 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-400/30">
+                        <i class="fas fa-trophy text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">実績多数</h3>
-                    <p class="text-gray-600">延べ10,000人以上の会員様にご利用いただき、多くの成果を実現しています。</p>
+                    <h3 class="text-xl font-bold text-white mb-3">実績多数</h3>
+                    <p class="text-gray-300">延べ10,000人以上の会員様にご利用いただき、多くの成果を実現。98%の目標達成率を誇ります。</p>
                 </div>
-                <div class="text-center">
-                    <div class="w-20 h-20 bg-gradient-to-br from-purple-500 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-6">
-                        <i class="fas fa-handshake text-white text-3xl"></i>
+                <div class="text-center p-8 rounded-xl bg-gradient-to-br from-gray-800 to-gray-900 border border-yellow-400/10 hover:border-yellow-400/30 transition-all duration-300">
+                    <div class="w-20 h-20 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mx-auto mb-6 border border-yellow-400/30">
+                        <i class="fas fa-handshake text-yellow-400 text-3xl"></i>
                     </div>
-                    <h3 class="text-xl font-bold text-gray-900 mb-3">継続サポート</h3>
-                    <p class="text-gray-600">トレーニング外でも、食事指導やメンタルサポートで継続をサポートします。</p>
+                    <h3 class="text-xl font-bold text-white mb-3">継続サポート</h3>
+                    <p class="text-gray-300">トレーニング外でも、食事指導やメンタルサポートで継続をサポート。24時間LINE相談対応でいつでも質問可能。</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Trainers Section -->
-    <section id="trainers" class="py-20 bg-gray-50">
+    <section id="trainers" class="py-24 gradient-overlay">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">プロフェッショナルトレーナー</h2>
-                <p class="text-xl text-gray-600">経験豊富なトレーナーがあなたをサポート</p>
+            <div class="text-center mb-20">
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    プロフェッショナルトレーナー
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">経験豊富なトレーナーが<br class="hidden md:block">あなたをサポート</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">全員が資格保有のプロフェッショナル。あなたの目標達成を全力でサポートします</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                        <i class="fas fa-user-circle text-white text-8xl"></i>
+                <div class="trainer-card rounded-2xl shadow-2xl overflow-hidden card-hover">
+                    <div class="h-80 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 flex items-center justify-center border-b border-yellow-400/20">
+                        <div class="w-48 h-48 bg-gradient-to-br from-yellow-400/30 to-transparent rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-circle text-yellow-400 text-9xl"></i>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">田中 健太</h3>
-                        <p class="text-purple-600 font-semibold mb-4">ヘッドトレーナー</p>
-                        <p class="text-gray-600 mb-4">
-                            15年の指導経験。パーソナルトレーナー協会認定。ボディメイクからリハビリまで幅広く対応。
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">田中 健太</h3>
+                        <p class="text-yellow-400 font-semibold mb-4 text-lg">ヘッドトレーナー</p>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            15年の指導経験を持つベテラントレーナー。パーソナルトレーナー協会認定。ボディメイクからリハビリまで幅広く対応。科学的根拠に基づいた指導で多くの実績を残しています。
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">NSCA-CPT</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">柔道整復師</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-semibold border border-yellow-400/30">NSCA-CPT</span>
+                            <span class="px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-semibold border border-yellow-400/30">柔道整復師</span>
+                        </div>
+                        <div class="text-gray-400 text-sm">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="ml-2">指導実績: 3,000名以上</span>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                        <i class="fas fa-user-circle text-white text-8xl"></i>
+                <div class="trainer-card rounded-2xl shadow-2xl overflow-hidden card-hover">
+                    <div class="h-80 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 flex items-center justify-center border-b border-yellow-400/20">
+                        <div class="w-48 h-48 bg-gradient-to-br from-yellow-400/30 to-transparent rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-circle text-yellow-400 text-9xl"></i>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">佐藤 美咲</h3>
-                        <p class="text-purple-600 font-semibold mb-4">シニアトレーナー</p>
-                        <p class="text-gray-600 mb-4">
-                            女性専門トレーナー。ダイエット・ボディメイクに強み。多くの女性クライアントの目標達成をサポート。
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">佐藤 美咲</h3>
+                        <p class="text-yellow-400 font-semibold mb-4 text-lg">シニアトレーナー</p>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            女性専門トレーナーとして10年の経験。ダイエット・ボディメイクに強みを持ち、多くの女性クライアントの目標達成をサポート。栄養指導にも精通しています。
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">JATI-ATI</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">栄養士</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-semibold border border-yellow-400/30">JATI-ATI</span>
+                            <span class="px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-semibold border border-yellow-400/30">管理栄養士</span>
+                        </div>
+                        <div class="text-gray-400 text-sm">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="ml-2">指導実績: 2,500名以上</span>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg overflow-hidden card-hover">
-                    <div class="h-64 bg-gradient-to-br from-purple-400 to-purple-600 flex items-center justify-center">
-                        <i class="fas fa-user-circle text-white text-8xl"></i>
+                <div class="trainer-card rounded-2xl shadow-2xl overflow-hidden card-hover">
+                    <div class="h-80 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 flex items-center justify-center border-b border-yellow-400/20">
+                        <div class="w-48 h-48 bg-gradient-to-br from-yellow-400/30 to-transparent rounded-full flex items-center justify-center">
+                            <i class="fas fa-user-circle text-yellow-400 text-9xl"></i>
+                        </div>
                     </div>
-                    <div class="p-6">
-                        <h3 class="text-2xl font-bold text-gray-900 mb-2">鈴木 大輔</h3>
-                        <p class="text-purple-600 font-semibold mb-4">シニアトレーナー</p>
-                        <p class="text-gray-600 mb-4">
-                            アスリート指導経験豊富。パフォーマンス向上と怪我予防に特化。スポーツ選手からも信頼される。
+                    <div class="p-8">
+                        <h3 class="text-2xl font-bold text-white mb-2">鈴木 大輔</h3>
+                        <p class="text-yellow-400 font-semibold mb-4 text-lg">シニアトレーナー</p>
+                        <p class="text-gray-300 mb-6 leading-relaxed">
+                            アスリート指導経験が豊富なトレーナー。パフォーマンス向上と怪我予防に特化し、スポーツ選手からも信頼される。機能改善トレーニングのエキスパートです。
                         </p>
-                        <div class="flex flex-wrap gap-2">
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">CSCS</span>
-                            <span class="px-3 py-1 bg-purple-100 text-purple-700 rounded-full text-sm">アスレティックトレーナー</span>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-semibold border border-yellow-400/30">CSCS</span>
+                            <span class="px-4 py-2 bg-yellow-400/20 text-yellow-400 rounded-full text-sm font-semibold border border-yellow-400/30">アスレティックトレーナー</span>
+                        </div>
+                        <div class="text-gray-400 text-sm">
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <i class="fas fa-star text-yellow-400 mr-1"></i>
+                            <span class="ml-2">指導実績: 2,000名以上</span>
                         </div>
                     </div>
                 </div>
@@ -255,125 +551,140 @@
     </section>
 
     <!-- Pricing Section -->
-    <section id="pricing" class="py-20 bg-white">
+    <section id="pricing" class="py-24 bg-gray-900">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">料金プラン</h2>
-                <p class="text-xl text-gray-600">あなたに最適なプランをお選びください</p>
+            <div class="text-center mb-20">
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    料金プラン
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">あなたに最適なプランを<br class="hidden md:block">お選びください</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">初回カウンセリング・体験トレーニングは無料です</p>
             </div>
-            <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-                <div class="bg-white border-2 border-gray-200 rounded-xl p-8 card-hover">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">ベーシック</h3>
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <div class="trainer-card rounded-2xl p-10 card-hover">
+                    <h3 class="text-2xl font-bold text-white mb-4">ベーシック</h3>
                     <div class="mb-6">
-                        <span class="text-4xl font-bold text-gray-900">¥8,800</span>
-                        <span class="text-gray-600">/回</span>
+                        <span class="text-5xl font-black text-white">¥8,800</span>
+                        <span class="text-gray-400 text-xl">/回</span>
                     </div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-4 mb-8">
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">60分パーソナルトレーニング</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">60分パーソナルトレーニング</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">プログラム作成</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">オーダーメイドプログラム作成</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">体組成測定</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">体組成測定</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">基本栄養指導</span>
                         </li>
                     </ul>
-                    <a href="#contact" class="block w-full bg-gray-200 text-gray-900 py-3 rounded-lg text-center font-semibold hover:bg-gray-300 transition">
+                    <a href="#contact" class="block w-full btn-secondary text-center py-4 rounded-lg font-semibold">
                         お問い合わせ
                     </a>
                 </div>
-                <div class="bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl p-8 text-white card-hover transform scale-105 shadow-2xl">
-                    <div class="bg-yellow-400 text-purple-900 text-sm font-bold px-3 py-1 rounded-full inline-block mb-4">
-                        人気プラン
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">プレミアム</h3>
+                <div class="pricing-card-featured rounded-2xl p-10 card-hover transform scale-105">
+                    <h3 class="text-2xl font-bold text-white mb-4">プレミアム</h3>
                     <div class="mb-6">
-                        <span class="text-4xl font-bold">¥24,800</span>
-                        <span class="text-purple-200">/月（4回）</span>
+                        <span class="text-5xl font-black text-white">¥24,800</span>
+                        <span class="text-gray-400 text-xl">/月（4回）</span>
                     </div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-4 mb-8">
                         <li class="flex items-start">
-                            <i class="fas fa-check mr-3 mt-1"></i>
-                            <span>60分パーソナルトレーニング × 4回</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">60分パーソナルトレーニング × 4回</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check mr-3 mt-1"></i>
-                            <span>オーダーメイドプログラム</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">完全オーダーメイドプログラム</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check mr-3 mt-1"></i>
-                            <span>栄養指導・食事管理サポート</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">栄養指導・食事管理サポート</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check mr-3 mt-1"></i>
-                            <span>24時間LINEサポート</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">24時間LINEサポート</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check mr-3 mt-1"></i>
-                            <span>体組成測定・進捗管理</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">体組成測定・進捗管理</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">月次レポート作成</span>
                         </li>
                     </ul>
-                    <a href="#contact" class="block w-full bg-white text-purple-600 py-3 rounded-lg text-center font-semibold hover:bg-gray-100 transition">
+                    <a href="#contact" class="block w-full btn-primary text-center py-4 rounded-lg font-semibold">
                         お問い合わせ
                     </a>
                 </div>
-                <div class="bg-white border-2 border-gray-200 rounded-xl p-8 card-hover">
-                    <h3 class="text-2xl font-bold text-gray-900 mb-4">エリート</h3>
+                <div class="trainer-card rounded-2xl p-10 card-hover">
+                    <h3 class="text-2xl font-bold text-white mb-4">エリート</h3>
                     <div class="mb-6">
-                        <span class="text-4xl font-bold text-gray-900">¥44,800</span>
-                        <span class="text-gray-600">/月（8回）</span>
+                        <span class="text-5xl font-black text-white">¥44,800</span>
+                        <span class="text-gray-400 text-xl">/月（8回）</span>
                     </div>
-                    <ul class="space-y-3 mb-8">
+                    <ul class="space-y-4 mb-8">
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">60分パーソナルトレーニング × 8回</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">60分パーソナルトレーニング × 8回</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">完全オーダーメイドプログラム</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">完全オーダーメイドプログラム</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">専属栄養士による食事管理</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">専属栄養士による食事管理</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">24時間LINEサポート</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">24時間LINEサポート</span>
                         </li>
                         <li class="flex items-start">
-                            <i class="fas fa-check text-purple-600 mr-3 mt-1"></i>
-                            <span class="text-gray-600">週次進捗レポート</span>
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">週次進捗レポート</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check-circle text-yellow-400 mr-3 mt-1"></i>
+                            <span class="text-gray-300">優先予約権</span>
                         </li>
                     </ul>
-                    <a href="#contact" class="block w-full bg-gray-200 text-gray-900 py-3 rounded-lg text-center font-semibold hover:bg-gray-300 transition">
+                    <a href="#contact" class="block w-full btn-secondary text-center py-4 rounded-lg font-semibold">
                         お問い合わせ
                     </a>
                 </div>
             </div>
-            <div class="mt-12 text-center">
-                <p class="text-gray-600 mb-4">※初回カウンセリング・体験トレーニングは無料です</p>
-                <a href="#contact" class="text-purple-600 hover:text-purple-700 font-semibold">
-                    無料体験を予約する <i class="fas fa-arrow-right ml-2"></i>
+            <div class="mt-16 text-center">
+                <p class="text-gray-400 mb-6 text-lg">※初回カウンセリング・体験トレーニング（60分）は完全無料です</p>
+                <a href="#contact" class="inline-block btn-primary px-10 py-4 rounded-lg text-lg font-semibold">
+                    <i class="fas fa-calendar-check mr-2"></i>無料体験を予約する
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Testimonials Section -->
-    <section class="py-20 bg-gray-50">
+    <section id="testimonials" class="py-24 gradient-overlay">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">お客様の声</h2>
-                <p class="text-xl text-gray-600">実際にご利用いただいたお客様からの評価</p>
+            <div class="text-center mb-20">
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    お客様の声
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">実際にご利用いただいた<br class="hidden md:block">お客様からの評価</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">98%の目標達成率を誇るELITE FITNESSの実績</p>
             </div>
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
+                <div class="testimonial-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellow-400 text-xl">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -381,22 +692,22 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "3ヶ月で10kgの減量に成功しました。トレーナーの方の指導が的確で、無理なく続けられました。食事指導もありがたかったです。"
+                    <p class="text-gray-300 mb-6 italic leading-relaxed text-lg">
+                        "3ヶ月で10kgの減量に成功しました。トレーナーの方の指導が的確で、無理なく続けられました。食事指導もありがたかったです。目標を達成できて本当に嬉しいです。"
                     </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-purple-600"></i>
+                    <div class="flex items-center pt-6 border-t border-yellow-400/20">
+                        <div class="w-14 h-14 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mr-4 border border-yellow-400/30">
+                            <i class="fas fa-user text-yellow-400 text-xl"></i>
                         </div>
                         <div>
-                            <p class="font-semibold text-gray-900">30代女性</p>
-                            <p class="text-sm text-gray-600">ダイエットプログラム</p>
+                            <p class="font-bold text-white">30代女性</p>
+                            <p class="text-sm text-gray-400">ダイエットプログラム / 3ヶ月</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
+                <div class="testimonial-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellow-400 text-xl">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -404,22 +715,22 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "腰痛が改善され、以前より動けるようになりました。トレーナーが丁寧にフォームを指導してくれたおかげです。"
+                    <p class="text-gray-300 mb-6 italic leading-relaxed text-lg">
+                        "腰痛が改善され、以前より動けるようになりました。トレーナーが丁寧にフォームを指導してくれたおかげです。リハビリプログラムが本当に効果的でした。"
                     </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-purple-600"></i>
+                    <div class="flex items-center pt-6 border-t border-yellow-400/20">
+                        <div class="w-14 h-14 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mr-4 border border-yellow-400/30">
+                            <i class="fas fa-user text-yellow-400 text-xl"></i>
                         </div>
                         <div>
-                            <p class="font-semibold text-gray-900">40代男性</p>
-                            <p class="text-sm text-gray-600">リハビリプログラム</p>
+                            <p class="font-bold text-white">40代男性</p>
+                            <p class="text-sm text-gray-400">リハビリプログラム / 6ヶ月</p>
                         </div>
                     </div>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg p-8">
-                    <div class="flex items-center mb-4">
-                        <div class="flex text-yellow-400">
+                <div class="testimonial-card rounded-2xl p-8 card-hover">
+                    <div class="flex items-center mb-6">
+                        <div class="flex text-yellow-400 text-xl">
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
                             <i class="fas fa-star"></i>
@@ -427,16 +738,16 @@
                             <i class="fas fa-star"></i>
                         </div>
                     </div>
-                    <p class="text-gray-600 mb-6 italic">
-                        "ボディメイクの目標を達成できました。個別のプログラムで効率的にトレーニングでき、結果が出て本当に嬉しいです。"
+                    <p class="text-gray-300 mb-6 italic leading-relaxed text-lg">
+                        "ボディメイクの目標を達成できました。個別のプログラムで効率的にトレーニングでき、結果が出て本当に嬉しいです。トレーナーの方のサポートが素晴らしかったです。"
                     </p>
-                    <div class="flex items-center">
-                        <div class="w-12 h-12 bg-purple-100 rounded-full flex items-center justify-center mr-4">
-                            <i class="fas fa-user text-purple-600"></i>
+                    <div class="flex items-center pt-6 border-t border-yellow-400/20">
+                        <div class="w-14 h-14 bg-gradient-to-br from-yellow-400/20 to-yellow-400/10 rounded-full flex items-center justify-center mr-4 border border-yellow-400/30">
+                            <i class="fas fa-user text-yellow-400 text-xl"></i>
                         </div>
                         <div>
-                            <p class="font-semibold text-gray-900">20代女性</p>
-                            <p class="text-sm text-gray-600">ボディメイクプログラム</p>
+                            <p class="font-bold text-white">20代女性</p>
+                            <p class="text-sm text-gray-400">ボディメイクプログラム / 4ヶ月</p>
                         </div>
                     </div>
                 </div>
@@ -445,88 +756,137 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-white">
+    <section id="contact" class="py-24 bg-gray-900">
         <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="text-center mb-16">
-                <h2 class="text-4xl font-bold text-gray-900 mb-4">お問い合わせ</h2>
-                <p class="text-xl text-gray-600">無料カウンセリング・体験トレーニングのご予約</p>
+                <span class="inline-block px-4 py-2 bg-yellow-400/20 border border-yellow-400/30 rounded-full text-yellow-400 text-sm font-semibold mb-4">
+                    お問い合わせ
+                </span>
+                <h2 class="text-4xl md:text-5xl font-black text-white mb-6">無料カウンセリング・<br class="hidden md:block">体験トレーニングのご予約</h2>
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">お気軽にお問い合わせください。担当者より24時間以内にご連絡いたします。</p>
             </div>
-            <div class="bg-gray-50 rounded-xl shadow-lg p-8 md:p-12">
+            <div class="bg-gradient-to-br from-gray-800 to-gray-900 rounded-2xl shadow-2xl p-8 md:p-12 border border-yellow-400/20">
                 <form id="contact-form" class="space-y-6">
                     <div>
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-2">お名前 <span class="text-red-500">*</span></label>
-                        <input type="text" id="name" name="name" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <label for="name" class="block text-sm font-semibold text-white mb-2">
+                            お名前 <span class="text-yellow-400">*</span>
+                        </label>
+                        <input type="text" id="name" name="name" required 
+                               class="form-input w-full px-5 py-4 rounded-lg focus:ring-2 focus:ring-yellow-400"
+                               placeholder="山田 太郎">
                     </div>
                     <div>
-                        <label for="email" class="block text-sm font-medium text-gray-700 mb-2">メールアドレス <span class="text-red-500">*</span></label>
-                        <input type="email" id="email" name="email" required class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <label for="email" class="block text-sm font-semibold text-white mb-2">
+                            メールアドレス <span class="text-yellow-400">*</span>
+                        </label>
+                        <input type="email" id="email" name="email" required 
+                               class="form-input w-full px-5 py-4 rounded-lg focus:ring-2 focus:ring-yellow-400"
+                               placeholder="example@email.com">
                     </div>
                     <div>
-                        <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">電話番号</label>
-                        <input type="tel" id="phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <label for="phone" class="block text-sm font-semibold text-white mb-2">
+                            電話番号
+                        </label>
+                        <input type="tel" id="phone" name="phone" 
+                               class="form-input w-full px-5 py-4 rounded-lg focus:ring-2 focus:ring-yellow-400"
+                               placeholder="090-1234-5678">
                     </div>
                     <div>
-                        <label for="service" class="block text-sm font-medium text-gray-700 mb-2">ご希望のサービス</label>
-                        <select id="service" name="service" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                        <label for="service" class="block text-sm font-semibold text-white mb-2">
+                            ご希望のサービス <span class="text-yellow-400">*</span>
+                        </label>
+                        <select id="service" name="service" required 
+                                class="form-input w-full px-5 py-4 rounded-lg focus:ring-2 focus:ring-yellow-400">
                             <option value="">選択してください</option>
                             <option value="personal">パーソナルトレーニング</option>
                             <option value="bodymake">ボディメイク</option>
                             <option value="rehab">リハビリ・ケア</option>
+                            <option value="consultation">無料カウンセリングのみ</option>
                             <option value="other">その他</option>
                         </select>
                     </div>
                     <div>
-                        <label for="message" class="block text-sm font-medium text-gray-700 mb-2">お問い合わせ内容</label>
-                        <textarea id="message" name="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent"></textarea>
+                        <label for="message" class="block text-sm font-semibold text-white mb-2">
+                            お問い合わせ内容・ご希望の日時など
+                        </label>
+                        <textarea id="message" name="message" rows="5" 
+                                  class="form-input w-full px-5 py-4 rounded-lg focus:ring-2 focus:ring-yellow-400 resize-none"
+                                  placeholder="お問い合わせ内容やご希望の日時などをご記入ください"></textarea>
                     </div>
-                    <button type="submit" class="w-full bg-purple-600 hover:bg-purple-700 text-white py-4 rounded-lg text-lg font-semibold transition shadow-lg">
-                        送信する
+                    <button type="submit" class="w-full btn-primary py-5 rounded-lg text-lg font-bold shadow-lg">
+                        <i class="fas fa-paper-plane mr-2"></i>送信する
                     </button>
+                    <p class="text-center text-gray-400 text-sm mt-4">
+                        送信いただいた内容は、SSL暗号化により安全に送信されます。
+                    </p>
                 </form>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-12">
+    <footer class="bg-black text-white py-16 border-t border-yellow-400/20">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="grid md:grid-cols-4 gap-8 mb-8">
+            <div class="grid md:grid-cols-4 gap-12 mb-12">
                 <div>
-                    <h3 class="text-2xl font-bold mb-4">ELITE FITNESS</h3>
-                    <p class="text-gray-400">
-                        あなたの理想の体を実現するパーソナルトレーニングジム
+                    <h3 class="text-3xl font-black mb-4">
+                        <span class="gold-accent">ELITE</span> FITNESS
+                    </h3>
+                    <p class="text-gray-400 leading-relaxed mb-4">
+                        あなたの理想の体を実現する<br>プロフェッショナルパーソナルトレーニングジム
                     </p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-yellow-400 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-instagram text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-yellow-400 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-facebook text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-yellow-400 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-twitter text-white"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-gray-800 hover:bg-yellow-400 rounded-full flex items-center justify-center transition duration-300">
+                            <i class="fab fa-youtube text-white"></i>
+                        </a>
+                    </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">サービス</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#services" class="hover:text-white transition">パーソナルトレーニング</a></li>
-                        <li><a href="#services" class="hover:text-white transition">ボディメイク</a></li>
-                        <li><a href="#services" class="hover:text-white transition">リハビリ・ケア</a></li>
+                    <h4 class="font-bold text-lg mb-6 text-yellow-400">サービス</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#services" class="hover:text-yellow-400 transition duration-300">パーソナルトレーニング</a></li>
+                        <li><a href="#services" class="hover:text-yellow-400 transition duration-300">ボディメイク</a></li>
+                        <li><a href="#services" class="hover:text-yellow-400 transition duration-300">リハビリ・ケア</a></li>
+                        <li><a href="#pricing" class="hover:text-yellow-400 transition duration-300">料金プラン</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">会社情報</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><a href="#" class="hover:text-white transition">運営会社</a></li>
-                        <li><a href="#" class="hover:text-white transition">プライバシーポリシー</a></li>
-                        <li><a href="#" class="hover:text-white transition">利用規約</a></li>
+                    <h4 class="font-bold text-lg mb-6 text-yellow-400">会社情報</h4>
+                    <ul class="space-y-3 text-gray-400">
+                        <li><a href="#" class="hover:text-yellow-400 transition duration-300">運営会社</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition duration-300">プライバシーポリシー</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition duration-300">利用規約</a></li>
+                        <li><a href="#" class="hover:text-yellow-400 transition duration-300">特定商取引法に基づく表記</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">お問い合わせ</h4>
-                    <ul class="space-y-2 text-gray-400">
-                        <li><i class="fas fa-phone mr-2"></i>0120-XXX-XXX</li>
-                        <li><i class="fas fa-envelope mr-2"></i>info@elitefitness.jp</li>
-                        <li class="flex space-x-4 mt-4">
-                            <a href="#" class="hover:text-white transition"><i class="fab fa-instagram text-2xl"></i></a>
-                            <a href="#" class="hover:text-white transition"><i class="fab fa-facebook text-2xl"></i></a>
-                            <a href="#" class="hover:text-white transition"><i class="fab fa-twitter text-2xl"></i></a>
+                    <h4 class="font-bold text-lg mb-6 text-yellow-400">お問い合わせ</h4>
+                    <ul class="space-y-4 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-phone text-yellow-400 mr-3 mt-1"></i>
+                            <span>0120-XXX-XXX<br><span class="text-sm">（平日 9:00-21:00）</span></span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-envelope text-yellow-400 mr-3 mt-1"></i>
+                            <span>info@elitefitness.jp</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt text-yellow-400 mr-3 mt-1"></i>
+                            <span>東京都渋谷区XX-X-X<br>XXビル 3F</span>
                         </li>
                     </ul>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-500">
                 <p>&copy; 2024 ELITE FITNESS. All rights reserved.</p>
             </div>
         </div>
@@ -555,24 +915,57 @@
             });
         });
 
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('nav-scrolled');
+            } else {
+                navbar.classList.remove('nav-scrolled');
+            }
+        });
+
         // Form submission
         document.getElementById('contact-form').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('お問い合わせありがとうございます。担当者より3営業日以内にご連絡いたします。');
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            
+            // Show success message
+            alert(`お問い合わせありがとうございます、${name}様。\n\nご希望のサービス: ${service}\n\n担当者より24時間以内にご連絡いたします。\n（${email}）`);
+            
+            // Reset form
             this.reset();
+            
+            // Scroll to top
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         });
 
-        // Navbar scroll effect
-        let lastScroll = 0;
-        const navbar = document.querySelector('nav');
-        window.addEventListener('scroll', () => {
-            const currentScroll = window.pageYOffset;
-            if (currentScroll <= 0) {
-                navbar.classList.remove('shadow-lg');
-            } else {
-                navbar.classList.add('shadow-lg');
-            }
-            lastScroll = currentScroll;
+        // Intersection Observer for fade-in animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all sections
+        document.querySelectorAll('section > div').forEach(section => {
+            observer.observe(section);
+        });
+
+        // Add scroll indicator click handler
+        document.querySelector('.scroll-indicator').addEventListener('click', () => {
+            document.getElementById('services').scrollIntoView({ behavior: 'smooth' });
         });
     </script>
 </body>
