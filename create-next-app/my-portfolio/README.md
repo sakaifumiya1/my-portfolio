@@ -165,35 +165,11 @@ npm run build
 npm start
 ```
 
-## GitHubリポジトリの作成とプッシュ
+## GitHubリポジトリ
 
-### 1. GitHubでリポジトリを作成
+**リポジトリURL**: https://github.com/sakaifumiya1/my-portfolio.git
 
-1. [GitHub](https://github.com)にログイン
-2. 右上の「+」→「New repository」をクリック
-3. リポジトリ名を入力（例: `attendance-app`）
-4. 「Public」または「Private」を選択
-5. 「Create repository」をクリック
-
-### 2. ローカルリポジトリを初期化してプッシュ
-
-```bash
-# Gitリポジトリを初期化（まだの場合）
-git init
-
-# ファイルをステージング
-git add .
-
-# 初回コミット
-git commit -m "Initial commit: 勤怠管理アプリ"
-
-# リモートリポジトリを追加（GitHubで作成したリポジトリのURLに置き換える）
-git remote add origin https://github.com/your-username/attendance-app.git
-
-# メインブランチにプッシュ
-git branch -M main
-git push -u origin main
-```
+このリポジトリには勤怠管理アプリが含まれています。プロジェクトのパスは `create-next-app/my-portfolio/` です。
 
 ## デプロイ
 
@@ -206,7 +182,7 @@ git push -u origin main
 3. GitHubリポジトリをインポート
 4. プロジェクト設定：
    - **Framework Preset**: Next.js（自動検出）
-   - **Root Directory**: `./`（そのまま）
+   - **Root Directory**: `create-next-app/my-portfolio`（重要：このパスを設定）
 5. **環境変数の設定**（重要）：
    - `NEXT_PUBLIC_SUPABASE_URL`: SupabaseのProject URL
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY`: Supabaseのanon public key
