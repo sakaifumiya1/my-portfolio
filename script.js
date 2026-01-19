@@ -64,6 +64,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initTypingAnimation();
     initCountUp();
     initParallax();
+    initSteakSlider();
 });
 
 // ==================== カスタムカーソル ====================
@@ -415,4 +416,134 @@ function createSparkle(element) {
             sparkle.parentNode.removeChild(sparkle);
         }
     }, 2000);
+}
+
+// ==================== ステーキスライダー ====================
+function initSteakSlider() {
+    const sliderTrack = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slider-slide');
+    const dots = document.querySelectorAll('.dot');
+    const prevBtn = document.querySelector('.slider-btn.prev');
+    const nextBtn = document.querySelector('.slider-btn.next');
+    
+    if (!sliderTrack || slides.length === 0) return;
+    
+    let currentSlide = 0;
+    const totalSlides = slides.length;
+    let autoSlideInterval;
+    
+    // スライドを表示する関数
+    function showSlide(index) {
+        // インデックスを範囲内に収める
+        if (index < 0) {
+            currentSlide = totalSlides - 1;
+        } else if (index >= totalSlides) {
+            currentSlide = 0;
+        } else {
+            currentSlide = index;
+        }
+        
+        // スライドを移動
+        sliderTrack.style.transform = `translateX(-${currentSlide * 100}%)`;
+        
+        // アクティブクラスの更新
+        slides.forEach((slide, idx) => {
+            slide.classList.toggle('active', idx === currentSlide);
+        });
+        
+        // ドットの更新
+        dots.forEach((dot, idx) => {
+            dot.classList.toggle('active', idx === currentSlide);
+        });
+    }
+    
+    // 次のスライドへ
+    function nextSlide() {
+        showSlide(currentSlide + 1);
+    }
+    
+    // 前のスライドへ
+    function prevSlide() {
+        showSlide(currentSlide - 1);
+    }
+    
+    // 自動スライド機能
+    function startAutoSlide() {
+        autoSlideInterval = setInterval(() => {
+            nextSlide();
+        }, 5000); // 5秒ごとに自動切り替え
+    }
+    
+    function stopAutoSlide() {
+        if (autoSlideInterval) {
+            clearInterval(autoSlideInterval);
+        }
+    }
+    
+    // ボタンイベント
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            nextSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            prevSlide();
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    }
+    
+    // ドットクリックイベント
+    dots.forEach((dot, index) => {
+        dot.addEventListener('click', () => {
+            showSlide(index);
+            stopAutoSlide();
+            startAutoSlide();
+        });
+    });
+    
+    // マウスホバーで自動スライドを一時停止
+    const slider = document.querySelector('.steak-slider');
+    if (slider) {
+        slider.addEventListener('mouseenter', stopAutoSlide);
+        slider.addEventListener('mouseleave', startAutoSlide);
+    }
+    
+    // タッチスワイプ対応（モバイル）
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    if (sliderTrack) {
+        sliderTrack.addEventListener('touchstart', (e) => {
+            touchStartX = e.changedTouches[0].screenX;
+            stopAutoSlide();
+        });
+        
+        sliderTrack.addEventListener('touchend', (e) => {
+            touchEndX = e.changedTouches[0].screenX;
+            handleSwipe();
+            startAutoSlide();
+        });
+    }
+    
+    function handleSwipe() {
+        const swipeThreshold = 50;
+        const diff = touchStartX - touchEndX;
+        
+        if (Math.abs(diff) > swipeThreshold) {
+            if (diff > 0) {
+                nextSlide();
+            } else {
+                prevSlide();
+            }
+        }
+    }
+    
+    // 初期化
+    showSlide(0);
+    startAutoSlide();
 }
