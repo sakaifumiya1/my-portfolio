@@ -27,8 +27,8 @@
 ### 1. リポジトリのクローン
 
 ```bash
-git clone <リポジトリURL>
-cd my-portfolio
+git clone https://github.com/sakaifumiya1/my-portfolio.git
+cd my-portfolio/create-next-app/my-portfolio
 ```
 
 ### 2. 依存関係のインストール
