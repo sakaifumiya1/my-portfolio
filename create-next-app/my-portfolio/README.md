@@ -65,21 +65,21 @@ npm install
 プロジェクトルートに `.env.local` ファイルを作成し、以下を設定します：
 
 ```bash
-# .env.local.exampleをコピー
-cp .env.local.example .env.local
-
-# ファイルを編集してSupabaseの認証情報を設定
-# または、エディタで直接作成
+# .env.localファイルを直接作成
+touch .env.local
 ```
 
-`.env.local` ファイルの内容：
+`.env.local` ファイルを開き、以下の内容を記述してください：
 
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=your_anon_public_key_here
 ```
 
-**重要**: `.env.local` ファイルは `.gitignore` に含まれているため、Gitにコミットされません。
+**重要**: 
+- `https://xxxxx.supabase.co` を実際のSupabaseのProject URLに置き換えてください
+- `your_anon_public_key_here` を実際のanon public keyに置き換えてください（`eyJ...`で始まる長い文字列）
+- `.env.local` ファイルは `.gitignore` に含まれているため、Gitにコミットされません
 
 ### 5. 開発サーバーの起動
 
