@@ -98,6 +98,10 @@ npm run dev
 
 ### 6. 動作確認
 
+#### ローカル開発環境
+
+開発サーバー起動後、以下のURLでアクセスできます：
+
 1. **ログインページ**: [http://localhost:3000/login](http://localhost:3000/login)
    - 新規アカウントを作成（サインアップ）
    - または既存アカウントでログイン
@@ -116,6 +120,17 @@ npm run dev
 5. **プロフィールページ**: [http://localhost:3000/profile](http://localhost:3000/profile)
    - 名前の変更
    - パスワードの変更
+
+#### 本番環境（デプロイ済み）
+
+以下のURLで本番環境のアプリにアクセスできます：
+
+- **デプロイURL**: https://my-portfolio-eight-vert-95.vercel.app
+- **ログインページ**: https://my-portfolio-eight-vert-95.vercel.app/login
+- **ホームページ**: https://my-portfolio-eight-vert-95.vercel.app
+- **週次ページ**: https://my-portfolio-eight-vert-95.vercel.app/weekly
+- **月次ページ**: https://my-portfolio-eight-vert-95.vercel.app/monthly
+- **プロフィールページ**: https://my-portfolio-eight-vert-95.vercel.app/profile
 
 ## プロジェクト構造
 
@@ -170,6 +185,12 @@ npm start
 **リポジトリURL**: https://github.com/sakaifumiya1/my-portfolio.git
 
 このリポジトリには勤怠管理アプリが含まれています。プロジェクトのパスは `create-next-app/my-portfolio/` です。
+
+## デプロイURL
+
+**本番環境URL**: https://my-portfolio-eight-vert-95.vercel.app
+
+上記URLで本番環境のアプリにアクセスできます。ログインページから新規アカウントを作成して使用できます。
 
 ## デプロイ
 
